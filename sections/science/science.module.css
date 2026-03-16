@@ -1,0 +1,79 @@
+.section {
+  min-height: 160vh;
+  padding: 15vh 5vw;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(10, 10, 10, 0.85) 50%,
+    rgba(10, 10, 10, 0.9) 100%
+  );
+}
+
+.header {
+  max-width: 45vw;
+  margin-bottom: 10vh;
+}
+
+.label {
+  display: block;
+  margin-bottom: 1.5rem;
+  color: var(--maroon-light);
+}
+
+.title {
+  color: var(--cream);
+  margin-bottom: 2rem;
+}
+
+.desc {
+  color: rgba(245, 240, 232, 0.6);
+  max-width: 38ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.pillar {
+  padding: clamp(2rem, 4vw, 4rem);
+}
+
+.pillarIcon {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 3.5rem);
+  color: var(--maroon-light);
+  margin-bottom: 1.5rem;
+  line-height: 1;
+}
+
+.pillarTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+html[lang="ka"] .pillarTitle {
+  line-height: 1.25;
+}
+
+.pillarSubtitle {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maroon-light);
+  margin-bottom: 1.5rem;
+}
+
+.pillarDesc {
+  color: rgba(245, 240, 232, 0.55);
+  max-width: 32ch;
+  line-height: 1.7;
+}

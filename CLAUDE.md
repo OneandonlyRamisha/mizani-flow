@@ -29,7 +29,7 @@ No test framework is configured.
 - **Framework:** Next.js 16.1.6 (App Router), React 19.2.3, TypeScript 5.x (strict)
 - **Animation:** GSAP 3.14.2 + ScrollTrigger
 - **Smooth Scroll:** Lenis 1.3.18
-- **Styling:** Global CSS (`app/globals.css`) + inline styles (no Tailwind, no styled-components)
+- **Styling:** CSS Modules (`.module.css`) + Global CSS (`app/globals.css`) (no Tailwind, no styled-components)
 - **Fonts:** Barlow Condensed (`--font-display`, 600–900) and Lora (`--font-body`, 400–600) via `next/font/google`
 - **Linting:** ESLint 9.x flat config — `core-web-vitals` + `typescript` presets
 
@@ -39,9 +39,26 @@ No test framework is configured.
 
 - `app/layout.tsx` — Root layout: fonts, SVG grain filter, metadata
 - `app/page.tsx` — Imports `FlowSite` component (the entire site)
-- `app/globals.css` — CSS variables, typography scale, grain overlay, custom cursor, marquee, Lenis overrides
-- `app/components/FlowSite.tsx` (~2500 lines) — Single `"use client"` component containing all sections, scroll logic, and animations
+- `app/globals.css` — CSS variables, typography scale, grain overlay, custom cursor, marquee, Lenis overrides, responsive media queries
+- `app/components/FlowSite.tsx` — Orchestrator: canvas/frame logic, Lenis + GSAP setup, ScrollTrigger animations, composes all sections
 - `app/components/translations.ts` — i18n string map (`Lang = "en" | "ka"`), used via `t(key, lang)` helper
+
+### Sections (`sections/` at root)
+
+Each section has its own folder with `sectionName.tsx` + `sectionName.module.css`:
+- `sections/hero/` — Hero with radial rings, floating particles, SVG coffee beans, corner accents, wordmark
+- `sections/ingredients/` — 5 ingredient items with data getter, alternating L/R layout
+- `sections/science/` — 4 pillars in 2×2 grid with data getter
+- `sections/brew/` — 4-step brew ritual with data getter
+- `sections/testimonials/` — Horizontal scroll cards with data getter
+- `sections/stats/` — Counter stats + ingredient dosage strip
+- `sections/faq/` — Accordion with own `openFaq` state (`"use client"`), coffee cup SVG illustration
+- `sections/footer/` — CTA + brand display
+
+### Reusable Components (`components/` at root)
+
+- `components/cursor/customCursor.tsx` — Custom cursor element (ref forwarded)
+- `components/languageToggle/languageToggle.tsx` — EN/GE toggle button
 
 ### Frame Sequences
 
@@ -52,16 +69,18 @@ Three directories under `public/`, 121 PNGs each (363 total), stitched as one co
 
 Frame paths: `public/frames/frame_0001.png` → served at `/frames/frame_0001.png`
 
-### FlowSite Component
+### FlowSite Orchestrator
 
-The monolithic component handles:
-- **Frame loading:** Two-phase loader (10 parallel, rest sequential) across all 3 directories
+`app/components/FlowSite.tsx` is the `"use client"` orchestrator that:
+- **Frame loading:** Two-phase loader (10 parallel, rest in batches) across all 3 directories
 - **Canvas renderer:** Padded cover mode (responsive `IMAGE_SCALE`: 0.72–0.86), retina-aware, auto-samples background color from frame corners
 - **Lenis + GSAP integration:** Lenis smooth scroll connected to ScrollTrigger via `lenis.on("scroll", ScrollTrigger.update)` + GSAP ticker
-- **i18n:** `lang` state toggles English/Georgian; all content strings come from `translations.ts` via `useMemo`
-- **Hero entrance:** Radial rings, floating particles, SVG coffee beans with cursor-reactive magnetic repulsion, staggered letter reveal
-- **9 scroll sections** with distinct GSAP animation types (3D tilt, scale-up, slide-right, horizontal pin, counter, clip-reveal, fade-in)
+- **ScrollTrigger animations:** All GSAP animations targeting section elements via global CSS class selectors (`.ingredient-item`, `.science-pillar`, etc.)
+- **i18n:** `lang` state toggles English/Georgian; passed as prop to all sections
+- **Section composition:** Imports and renders all sections with forwarded refs
 - **Custom cursor:** `mix-blend-mode: difference`, expands on hover, hidden on touch
+
+Sections are purely presentational (receive `lang` prop, forward ref). GSAP targets elements by global CSS class names kept alongside CSS module classes.
 
 ### Sections (scroll order)
 
@@ -88,7 +107,12 @@ Typography classes: `.display-xl` (clamp 4–12rem), `.display-lg`, `.display-md
 
 - TypeScript for all files, `@/*` path alias for imports
 - Functional components only, PascalCase components, camelCase variables
+- CSS Modules for all component styling (`import styles from "./name.module.css"`), inline styles only for dynamic/JS-computed values
+- Global CSS class names (e.g. `.ingredient-item`) kept on elements alongside CSS module classes for GSAP ScrollTrigger targeting
+- `forwardRef` on sections that need parent ref access for GSAP animations
+- `"use client"` only on components that use hooks (FAQ owns its accordion state)
 - All translatable strings go in `translations.ts`, accessed via `t(key, lang)`
+- Data getter functions (getIngredients, getPillars, etc.) live in their respective section files
 - ESLint must pass before committing
 
 ## Common Gotchas

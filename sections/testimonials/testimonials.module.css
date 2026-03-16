@@ -1,0 +1,55 @@
+.section {
+  height: 150vh;
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.85);
+}
+
+.viewport {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: 5vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  will-change: transform;
+}
+
+.card {
+  flex: 0 0 60vw;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5vw;
+  border-left: 2px solid var(--maroon);
+}
+
+.quote {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 3vw, 2.8rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--cream);
+  margin-bottom: 3rem;
+  max-width: 28ch;
+}
+
+.author {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+.role {
+  color: var(--maroon-light);
+}
