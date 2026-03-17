@@ -105,3 +105,14 @@
   color: rgba(245, 240, 232, 0.35);
   line-height: 1.6;
 }
+
+@media (max-width: 768px) {
+  .section {
+    min-height: auto;
+    padding: 6vh 5vw;
+  }
+
+  .heading {
+    margin-bottom: 4vh;
+  }
+}

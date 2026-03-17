@@ -2,7 +2,7 @@
   min-height: 180vh;
   padding: 10vh 0;
   perspective: 1200px;
-  background: rgba(10, 10, 10, 0.85);
+
 }
 
 .header {
@@ -77,4 +77,19 @@ html[lang="ka"] .itemHeading {
 
 .itemSpacer {
   flex: 1;
+}
+
+@media (max-width: 768px) {
+  .section {
+    min-height: auto;
+    padding: 6vh 0;
+  }
+
+  .header {
+    margin-bottom: 4vh;
+  }
+
+  .item {
+    padding: 4vh 5vw;
+  }
 }

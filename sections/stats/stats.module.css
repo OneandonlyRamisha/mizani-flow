@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 12vh 5vw;
-  background: rgba(10, 10, 10, 0.92);
+
   position: relative;
 }
 
@@ -113,4 +113,27 @@
   font-size: clamp(0.7rem, 0.9vw, 0.85rem);
   color: rgba(245, 240, 232, 0.45);
   line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .section {
+    min-height: auto;
+    padding: 6vh 5vw;
+  }
+
+  .heading {
+    margin-bottom: 4vh;
+  }
+
+  .statsRow {
+    margin-bottom: 4rem;
+  }
+
+  .divider {
+    margin-bottom: 2rem;
+  }
+
+  .ingredientsHeading {
+    margin-bottom: 2rem;
+  }
 }

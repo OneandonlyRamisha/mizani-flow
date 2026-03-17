@@ -61,18 +61,26 @@ export const translations = {
   pillar1Title: { en: "ZEN-LIKE FOCUS", ka: "ზენის ფოკუსი" },
   pillar1Sub: { en: "L-Theanine + Lion\u2019s Mane", ka: "L-თეანინი + ლომის ფაფარი" },
   pillar1Desc: { en: "Alpha brain wave promotion meets neurogenesis. Enter a state of calm, directed attention \u2014 the kind monks train decades to achieve. We engineered it into a cup.", ka: "ალფა ტვინის ტალღების სტიმულირება ნეიროგენეზთან ერთად. შედით მშვიდი, მიმართული ყურადღების მდგომარეობაში — ისეთი, რომლის მიღწევასაც ბერები ათწლეულები ხარჯავენ." },
+  pillar1Stat: { en: "500mg", ka: "500მგ" },
+  pillar1StatLabel: { en: "Clinical dose per serving", ka: "კლინიკური დოზა პორციაზე" },
 
   pillar2Title: { en: "LIMITLESS CLARITY", ka: "უსაზღვრო სიცხადე" },
   pillar2Sub: { en: "Chaga + Collagen Protein", ka: "ჩაგა + კოლაგენის ცილა" },
   pillar2Desc: { en: "Antioxidant defense meets structural recovery. Chaga shields your cells from oxidative stress while collagen rebuilds from within \u2014 clarity that compounds over time.", ka: "ანტიოქსიდანტური დაცვა სტრუქტურულ აღდგენასთან ერთად. ჩაგა იცავს თქვენს უჯრედებს ოქსიდაციური სტრესისგან, ხოლო კოლაგენი აღადგენს შიგნიდან." },
+  pillar2Stat: { en: "10,000+", ka: "10,000+" },
+  pillar2StatLabel: { en: "ORAC antioxidant units", ka: "ORAC ანტიოქსიდანტის ერთეული" },
 
   pillar3Title: { en: "DEEP RESILIENCE", ka: "ღრმა გამძლეობა" },
   pillar3Sub: { en: "Chaga + L-Theanine", ka: "ჩაგა + L-თეანინი" },
   pillar3Desc: { en: "Immune fortification meets calm focus. Your body\u2019s stress response becomes measured, not reactive. Pressure becomes fuel, and recovery becomes effortless.", ka: "იმუნური გაძლიერება მშვიდ ფოკუსთან ერთად. სხეულის სტრესული რეაქცია ხდება გაზომილი, არა რეაქტიული. ზეწოლა ხდება საწვავი." },
+  pillar3Stat: { en: "40%", ka: "40%" },
+  pillar3StatLabel: { en: "Cortisol reduction observed", ka: "კორტიზოლის შემცირება" },
 
   pillar4Title: { en: "ZERO JITTERINESS", ka: "ნულოვანი ნერვიულობა" },
   pillar4Sub: { en: "Slow-Release Caffeine Matrix", ka: "ნელი გამოთავისუფლების კოფეინის მატრიცა" },
   pillar4Desc: { en: "200mg caffeine bound with L-Theanine in a 1:1 ratio. The stimulation curve rises smoothly and sustains for hours \u2014 no spike, no crash, no anxious edge.", ka: "200მგ კოფეინი შეკავშირებული L-თეანინთან 1:1 თანაფარდობით. სტიმულაციის მრუდი თანაბრად იზრდება და საათობით გრძელდება — არანაირი ვარდნა." },
+  pillar4Stat: { en: "1:1", ka: "1:1" },
+  pillar4StatLabel: { en: "Caffeine to L-Theanine ratio", ka: "კოფეინისა და L-თეანინის თანაფარდობა" },
 
   // === MARQUEE 2 ===
   marquee2Text: { en: "FOCUS \u00B7 CLARITY \u00B7 ENERGY \u00B7 CALM \u00B7 ", ka: "ფოკუსი \u00B7 სიცხადე \u00B7 ენერგია \u00B7 სიმშვიდე \u00B7 " },

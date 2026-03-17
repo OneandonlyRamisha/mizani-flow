@@ -1,7 +1,6 @@
 .section {
   height: 150vh;
   overflow: hidden;
-  background: rgba(10, 10, 10, 0.85);
 }
 
 .viewport {

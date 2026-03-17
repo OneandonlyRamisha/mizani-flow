@@ -1,7 +1,7 @@
 .section {
   min-height: 140vh;
   padding: 15vh 0;
-  background: rgba(10, 10, 10, 0.85);
+
 }
 
 .header {
@@ -92,4 +92,19 @@ html[lang="ka"] .stepTitle {
 .stepDetail {
   color: rgba(245, 240, 232, 0.4);
   font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .section {
+    min-height: auto;
+    padding: 6vh 0;
+  }
+
+  .header {
+    margin-bottom: 4vh;
+  }
+
+  .step {
+    padding: 2.5rem 0;
+  }
 }

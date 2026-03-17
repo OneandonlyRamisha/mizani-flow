@@ -435,16 +435,36 @@ export default function FlowSite() {
       });
     }
 
-    // === SCIENCE PILLARS: scale-up + stagger ===
+    // === SCIENCE PILLARS: manifesto reveal ===
     if (scienceRef.current) {
       const pillars = scienceRef.current.querySelectorAll(".science-pillar");
-      pillars.forEach((pillar) => {
-        const children = pillar.querySelectorAll(".pillar-icon, .pillar-title, .pillar-subtitle, .pillar-desc");
+      pillars.forEach((pillar, i) => {
+        const isReversed = i % 2 === 1;
+        const icon = pillar.querySelector(".pillar-icon");
+        const title = pillar.querySelector(".pillar-title");
+        const rule = pillar.querySelector(".pillar-rule");
+        const subtitle = pillar.querySelector(".pillar-subtitle");
+        const desc = pillar.querySelector(".pillar-desc");
+        const stat = pillar.querySelector(".pillar-stat");
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: pillar, start: "top 85%", end: "top 45%", scrub: true },
+          scrollTrigger: { trigger: pillar, start: "top 85%", end: "top 35%", scrub: true },
         });
-        tl.fromTo(pillar, { scale: 0.88, opacity: 0 }, { scale: 1, opacity: 1, ease: "power2.out" }, 0);
-        tl.fromTo(children, { y: 30, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, ease: "power3.out" }, 0.1);
+        // Watermark number fades in
+        if (icon) tl.fromTo(icon, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, ease: "power2.out" }, 0);
+        // Title clip-path reveal — synced with rule line so last letter appears when line finishes
+        if (title) {
+          const clipFrom = isReversed ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)";
+          const clipTo = "inset(0 0% 0 0%)";
+          tl.fromTo(title, { clipPath: clipFrom, opacity: 0 }, { clipPath: clipTo, opacity: 1, duration: 0.5, ease: "power3.inOut" }, 0.05);
+        }
+        // Rule line extends — same start and duration as title
+        if (rule) {
+          tl.fromTo(rule, { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 0.05);
+        }
+        // Subtitle, description, stat fade up staggered
+        if (subtitle) tl.fromTo(subtitle, { y: 20, opacity: 0 }, { y: 0, opacity: 1, ease: "power3.out" }, 0.3);
+        if (desc) tl.fromTo(desc, { y: 20, opacity: 0 }, { y: 0, opacity: 1, ease: "power3.out" }, 0.38);
+        if (stat) tl.fromTo(stat, { y: 20, opacity: 0 }, { y: 0, opacity: 1, ease: "power3.out" }, 0.46);
       });
 
       const sciHeading = scienceRef.current.querySelector(".science-section-heading");
@@ -613,7 +633,7 @@ export default function FlowSite() {
         <div style={{ height: "200vh" }} />
 
         {/* Marquee divider */}
-        <div style={{ height: "20vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
+        <div className="marquee-divider" style={{ height: "20vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
           <div
             ref={marqueeTextRef}
             className="marquee-text"
@@ -623,30 +643,33 @@ export default function FlowSite() {
           </div>
         </div>
 
-        <Ingredients ref={ingredientsRef} lang={lang} />
-        <Science ref={scienceRef} lang={lang} />
+        {/* Unified dark overlay — single background for all content sections */}
+        <div style={{ background: "rgba(10, 10, 10, 0.88)" }}>
+          <Ingredients ref={ingredientsRef} lang={lang} />
+          <Science ref={scienceRef} lang={lang} />
 
-        {/* Marquee 2 */}
-        <div
-          ref={marquee2Ref}
-          style={{ height: "20vh", display: "flex", alignItems: "center", overflow: "hidden", background: "rgba(10,10,10,0.85)", padding: "2vh 0" }}
-        >
+          {/* Marquee 2 */}
           <div
-            className="marquee-text"
-            style={{ animation: "marqueeSlide 50s linear infinite", animationPlayState: "paused", fontSize: "clamp(4vw, 7vw, 9vw)", opacity: 0.15, lineHeight: 1.1 }}
+            ref={marquee2Ref}
+            style={{ height: "20vh", display: "flex", alignItems: "center", overflow: "hidden", padding: "2vh 0" }}
           >
-            {marquee2Content}
+            <div
+              className="marquee-text"
+              style={{ animation: "marqueeSlide 50s linear infinite", animationPlayState: "paused", fontSize: "clamp(4vw, 7vw, 9vw)", opacity: 0.15, lineHeight: 1.1 }}
+            >
+              {marquee2Content}
+            </div>
           </div>
-        </div>
 
-        <Brew ref={brewRef} lang={lang} />
-        <Testimonials ref={testimonialsRef} lang={lang} />
-        <Stats ref={statsRef} lang={lang} />
+          <Brew ref={brewRef} lang={lang} />
+          <Testimonials ref={testimonialsRef} lang={lang} />
+          <Stats ref={statsRef} lang={lang} />
 
-        {/* Black background zone — covers canvas for FAQ + Footer */}
-        <div style={{ position: "relative", zIndex: 4, background: "var(--black)" }}>
-          <Faq ref={faqRef} lang={lang} />
-          <Footer ref={footerRef} lang={lang} />
+          {/* Black background zone — covers canvas for FAQ + Footer */}
+          <div style={{ position: "relative", zIndex: 4, background: "var(--black)" }}>
+            <Faq ref={faqRef} lang={lang} />
+            <Footer ref={footerRef} lang={lang} />
+          </div>
         </div>
       </div>
 

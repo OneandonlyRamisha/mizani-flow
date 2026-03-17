@@ -241,6 +241,7 @@ body::after {
     padding-bottom: 1rem !important;
     text-align: left !important;
   }
+  .marquee-divider { display: none !important; }
   .science-header { max-width: 100% !important; }
   .science-desc { max-width: 100% !important; }
   .pillars-grid { grid-template-columns: 1fr !important; }
