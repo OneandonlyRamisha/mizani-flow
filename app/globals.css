@@ -1,0 +1,162 @@
+:root {
+  --black: #0a0a0a;
+  --maroon: #6B1F2A;
+  --maroon-light: #8B2F3A;
+  --cream: #F5F0E8;
+  --white: #FFFFFF;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Lora', serif;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+  background: var(--black);
+  color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Typography Scale */
+.display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 12rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 8rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.display-md {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 5rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.body-lg {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* Georgian script needs more vertical space — descenders extend further */
+html[lang="ka"] .display-xl,
+html[lang="ka"] .display-lg,
+html[lang="ka"] .display-md,
+html[lang="ka"] .heading {
+  line-height: 1.25;
+  padding-bottom: 0.15em;
+  overflow: visible;
+}
+html[lang="ka"] .label {
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  padding-bottom: 0.1em;
+}
+html[lang="ka"] .body-lg,
+html[lang="ka"] .body {
+  line-height: 1.85;
+}
+
+/* Grain Overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  filter: url(#grain);
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.grainSvg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .display-xl {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+  .display-lg {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+  .display-md {
+    font-size: clamp(1.8rem, 8vw, 3rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .display-xl {
+    font-size: clamp(2.5rem, 14vw, 4rem);
+  }
+  .display-lg {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+}

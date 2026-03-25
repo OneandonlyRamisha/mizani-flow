@@ -1,0 +1,263 @@
+.section {
+  min-height: 160vh;
+  padding: 15vh 5vw 10vh;
+}
+
+.header {
+  max-width: 45vw;
+  margin-bottom: 14vh;
+}
+
+.label {
+  display: block;
+  margin-bottom: 1.5rem;
+  color: var(--maroon-light);
+}
+
+.title {
+  color: var(--cream);
+  margin-bottom: 2rem;
+}
+
+.desc {
+  color: rgba(245, 240, 232, 0.6);
+  max-width: 38ch;
+}
+
+/* === Pillars: manifesto layout === */
+
+.pillarsStack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6rem, 10vh, 12rem);
+}
+
+/* Each pillar — full-width typographic moment */
+.pillar {
+  position: relative;
+  overflow: visible;
+}
+
+/* Giant watermark number — sits behind content */
+.pillarIndex {
+  position: absolute;
+  top: -0.3em;
+  right: -2vw;
+  font-family: var(--font-display);
+  font-size: clamp(10rem, 22vw, 26rem);
+  font-weight: 900;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(107, 31, 42, 0.1);
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pillarReversed .pillarIndex {
+  right: auto;
+  left: -2vw;
+}
+
+/* Title */
+.pillarTitle {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.2vw, 5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--cream);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.pillarReversed .pillarTitle {
+  text-align: right;
+}
+
+/* Thin maroon rule below the title */
+.pillarRule {
+  position: relative;
+  z-index: 1;
+  height: 1px;
+  background: var(--maroon);
+  margin: clamp(1.5rem, 2.5vh, 3rem) 0;
+  transform-origin: left center;
+}
+
+.pillarReversed .pillarRule {
+  transform-origin: right center;
+}
+
+/* Body: stacked — subtitle, description, stat */
+.pillarBody {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 2.5vh, 2.5rem);
+}
+
+.pillarReversed .pillarBody {
+  align-items: flex-end;
+}
+
+/* Subtitle tag */
+.pillarSubtitle {
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 0.95vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--maroon-light);
+  padding: 0.5em 1em;
+  border: 1px solid rgba(107, 31, 42, 0.3);
+  width: fit-content;
+}
+
+/* Description — wider, full block of text */
+.pillarDesc {
+  color: rgba(245, 240, 232, 0.55);
+  max-width: 55ch;
+  line-height: 1.85;
+}
+
+.pillarReversed .pillarDesc {
+  text-align: right;
+}
+
+/* Stat accent */
+.pillarStat {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(0.75rem, 1.2vw, 1.5rem);
+  padding-top: clamp(0.5rem, 1vh, 1rem);
+}
+
+.pillarStatReversed {
+  flex-direction: row-reverse;
+}
+
+.pillarStatValue {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 4rem);
+  font-weight: 900;
+  color: var(--maroon-light);
+  line-height: 1;
+}
+
+.pillarStatLabel {
+  font-family: var(--font-display);
+  font-size: clamp(0.6rem, 0.75vw, 0.8rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.3);
+}
+
+/* === Georgian text === */
+
+:global(html[lang="ka"]) .pillarTitle {
+  line-height: 1.45;
+}
+
+:global(html[lang="ka"]) .pillarSubtitle {
+  line-height: 1.7;
+}
+
+:global(html[lang="ka"]) .pillarStatLabel {
+  line-height: 1.6;
+}
+
+/* === Responsive === */
+
+@media (max-width: 768px) {
+  .section {
+    padding: 8vh 5vw 6vh;
+    min-height: auto;
+  }
+
+  .header {
+    max-width: 100%;
+    margin-bottom: 4vh;
+  }
+
+  .label {
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    margin-bottom: 1.2rem;
+  }
+
+  .pillarsStack {
+    gap: 3.5rem;
+  }
+
+  .pillarIndex {
+    font-size: clamp(6rem, 30vw, 12rem);
+    right: -1vw;
+    top: -0.15em;
+  }
+
+  .pillarReversed .pillarIndex {
+    left: -1vw;
+    right: auto;
+  }
+
+  .pillarTitle {
+    font-size: clamp(2.2rem, 10vw, 4rem);
+  }
+
+  .pillarRule {
+    margin: 1rem 0;
+  }
+
+  .pillarBody {
+    gap: 1rem;
+  }
+
+  .pillarReversed .pillarTitle {
+    text-align: left;
+  }
+
+  .pillarReversed .pillarBody {
+    align-items: flex-start;
+  }
+
+  .pillarReversed .pillarDesc {
+    text-align: left;
+  }
+
+  .pillarDesc {
+    max-width: 100%;
+  }
+
+  .pillarStat {
+    padding-top: 0.25rem;
+  }
+
+  :global(.science-pillar) {
+    padding: 2rem !important;
+  }
+
+  :global(.science-header) {
+    max-width: 100% !important;
+  }
+
+  :global(.science-desc) {
+    max-width: 100% !important;
+  }
+
+  :global(.pillars-grid) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  :global(.science-pillar) {
+    padding: 1.25rem !important;
+  }
+}

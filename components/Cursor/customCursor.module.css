@@ -1,0 +1,25 @@
+:global(.custom-cursor) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--cream);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+:global(.custom-cursor.expanded) {
+  width: 60px;
+  height: 60px;
+}
+
+@media (pointer: coarse) {
+  :global(.custom-cursor) {
+    display: none !important;
+  }
+}

@@ -1,0 +1,32 @@
+.canvasWrap {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  clip-path: circle(0% at 50% 50%);
+}
+
+.canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  clip-path: inset(0 0 20px 0);
+}
+
+.scrollContainer {
+  position: relative;
+  z-index: 3;
+}
+
+.heroSpacer {
+  height: 200vh;
+}
+
+.contentOverlay {
+  background: rgba(10, 10, 10, 0.88);
+}
+
+.blackZone {
+  position: relative;
+  z-index: 4;
+  background: var(--black);
+}
