@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { type Lang, t } from "@/app/components/translations";
+import { type Lang, t } from "@/lib/translations";
 import styles from "./footer.module.css";
 
 interface FooterProps {

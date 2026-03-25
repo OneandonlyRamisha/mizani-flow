@@ -4,18 +4,18 @@ import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { type Lang, t } from "./translations";
+import { type Lang, t } from "@/lib/translations";
 
-import CustomCursor from "@/components/cursor/customCursor";
-import LanguageToggle from "@/components/languageToggle/languageToggle";
-import Hero, { BEANS } from "@/sections/hero/hero";
-import Ingredients from "@/sections/ingredients/ingredients";
-import Science from "@/sections/science/science";
-import Brew from "@/sections/brew/brew";
-import Testimonials from "@/sections/testimonials/testimonials";
-import Stats from "@/sections/stats/stats";
-import Faq from "@/sections/faq/faq";
-import Footer from "@/sections/footer/footer";
+import CustomCursor from "@/components/Cursor/customCursor";
+import LanguageToggle from "@/components/LanguageToggle/languageToggle";
+import Hero, { BEANS } from "@/sections/Hero/hero";
+import Ingredients from "@/sections/Ingredients/ingredients";
+import Science from "@/sections/Science/science";
+import Brew from "@/sections/Brew/brew";
+import Testimonials from "@/sections/Testimonials/testimonials";
+import Stats from "@/sections/Stats/stats";
+import Faq from "@/sections/Faq/faq";
+import Footer from "@/sections/Footer/footer";
 
 gsap.registerPlugin(ScrollTrigger);
 

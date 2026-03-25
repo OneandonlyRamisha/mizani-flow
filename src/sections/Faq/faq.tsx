@@ -1,7 +1,7 @@
 "use client";
 
 import { forwardRef, useMemo, useState, useCallback } from "react";
-import { type Lang, t } from "@/app/components/translations";
+import { type Lang, t } from "@/lib/translations";
 import styles from "./faq.module.css";
 
 const getFaqs = (lang: Lang) => [

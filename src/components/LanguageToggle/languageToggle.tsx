@@ -1,4 +1,4 @@
-import { type Lang } from "@/app/components/translations";
+import { type Lang } from "@/lib/translations";
 import styles from "./languageToggle.module.css";
 
 interface LanguageToggleProps {

@@ -1,5 +1,5 @@
 import { forwardRef, useMemo } from "react";
-import { type Lang, t } from "@/app/components/translations";
+import { type Lang, t } from "@/lib/translations";
 import styles from "./brew.module.css";
 
 const getBrewSteps = (lang: Lang) => [
