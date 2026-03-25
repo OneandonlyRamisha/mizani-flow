@@ -65,6 +65,7 @@ export default function FlowSite() {
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const imageScaleRef = useRef(getImageScale());
   const framesReadyRef = useRef(false);
+  const allFramesLoadedRef = useRef(false);
   const heroVisibleRef = useRef(true);
   const [lang, setLang] = useState<Lang>("en");
 
@@ -194,6 +195,16 @@ export default function FlowSite() {
     }
 
     let cancelled = false;
+    const totalFrames = allFramePaths.length;
+    let loadedFrames = 0;
+
+    const updateLoaderProgress = (loaded: number, total: number) => {
+      const pct = Math.round((loaded / total) * 100);
+      const barEl = document.getElementById("loader-bar");
+      const pctEl = document.getElementById("loader-pct");
+      if (barEl) barEl.style.width = `${pct}%`;
+      if (pctEl) pctEl.textContent = String(pct);
+    };
 
     (async () => {
       const firstBatch = await Promise.all(
@@ -208,6 +219,8 @@ export default function FlowSite() {
       });
       drawFrame(0);
       framesReadyRef.current = true;
+      loadedFrames += firstBatch.length;
+      updateLoaderProgress(loadedFrames, totalFrames);
 
       const BATCH_SIZE = 10;
       for (let i = 10; i < allFramePaths.length; i += BATCH_SIZE) {
@@ -221,7 +234,13 @@ export default function FlowSite() {
           if (idx % 30 === 0) sampleBgColor(img, idx);
           framesRef.current[idx] = downsizeFrame(img);
         });
+        loadedFrames += imgs.length;
+        updateLoaderProgress(loadedFrames, totalFrames);
       }
+
+      // All frames loaded — snap to 100% and signal dismiss
+      updateLoaderProgress(totalFrames, totalFrames);
+      allFramesLoadedRef.current = true;
     })();
 
     return () => {
@@ -326,14 +345,19 @@ export default function FlowSite() {
     if (loader) {
       const loadStart = (window as unknown as Record<string, number>).__LOAD_START || Date.now();
       const dismissLoader = () => {
-        loader.style.transition = "opacity 0.6s ease";
-        loader.style.opacity = "0";
-        loaderFadeTimer = setTimeout(() => { loader.style.display = "none"; }, 600);
-        startLoopTweens();
+        // Brief pause at 100% so user sees the complete bar before exit
+        loaderFadeTimer = setTimeout(() => {
+          loader.style.transition = "opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1)";
+          loader.style.opacity = "0";
+          loader.style.transform = "scale(1.04)";
+          loaderFadeTimer = setTimeout(() => { loader.style.display = "none"; }, 900);
+          startLoopTweens();
+        }, 400);
       };
       loaderCheckInterval = setInterval(() => {
         const elapsed = Date.now() - loadStart;
-        if (elapsed >= 4000 && framesReadyRef.current) {
+        // Wait for ALL frames loaded + minimum 1.5s so entrance animation plays
+        if (elapsed >= 1500 && allFramesLoadedRef.current) {
           clearInterval(loaderCheckInterval!);
           loaderCheckInterval = null;
           dismissLoader();

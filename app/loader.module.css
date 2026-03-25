@@ -6,22 +6,146 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-.line {
-  width: 48px;
+/* Decorative corner text */
+.cornerTl,
+.cornerBr {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.12);
+  white-space: nowrap;
+  opacity: 0;
+  animation: loaderFadeIn 0.6s ease 0.8s forwards;
+}
+.cornerTl { top: 2.5rem; left: 2.5rem; }
+.cornerBr { bottom: 2.5rem; right: 2.5rem; text-align: right; }
+
+/* Decorative ambient beans */
+.bean {
+  position: absolute;
+  pointer-events: none;
+}
+.beanLeft {
+  top: 12%;
+  left: 6%;
+  width: clamp(50px, 6vw, 90px);
+  opacity: 0.04;
+  animation: beanFloat1 9s ease-in-out infinite;
+}
+.beanRight {
+  bottom: 15%;
+  right: 7%;
+  width: clamp(36px, 4vw, 64px);
+  opacity: 0.04;
+  animation: beanFloat2 11s ease-in-out infinite;
+}
+.beanTopRight {
+  top: 20%;
+  right: 12%;
+  width: clamp(24px, 2.5vw, 42px);
+  opacity: 0.03;
+  animation: beanFloat1 13s ease-in-out 1s infinite reverse;
+}
+
+/* Center content */
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+}
+
+/* "PERFORMANCE COFFEE" label */
+.tagline {
+  font-family: var(--font-display);
+  font-size: clamp(0.5rem, 0.8vw, 0.65rem);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(107, 31, 42, 0.75);
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: loaderSlideUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
+}
+
+/* The wordmark */
+.wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(7rem, 20vw, 18rem);
+  font-weight: 900;
+  line-height: 0.85;
+  color: var(--cream, #F5F0E8);
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  clip-path: inset(0 100% 0 0);
+  animation: loaderReveal 0.9s cubic-bezier(0.77, 0, 0.175, 1) 0.3s forwards;
+}
+
+/* Progress track */
+.barWrap {
+  width: clamp(180px, 28vw, 380px);
   height: 1px;
-  background: #F5F0E8;
-  transform-origin: center;
-  animation: loaderLine 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  background: rgba(245, 240, 232, 0.08);
+  margin-top: 2.8rem;
+  position: relative;
+  opacity: 0;
+  animation: loaderFadeIn 0.5s ease 0.9s forwards;
 }
 
-@keyframes loaderLine {
-  0%   { transform: scaleX(0);   opacity: 0; }
-  8%   { transform: scaleX(0.6); opacity: 0.5; }
-  20%  { transform: scaleX(1);   opacity: 0.4; }
-  50%  { transform: scaleX(1.2); opacity: 0.35; }
-  75%  { transform: scaleX(1);   opacity: 0.4; }
-  90%  { transform: scaleX(2);   opacity: 0.15; }
-  100% { transform: scaleX(3);   opacity: 0; }
+/* Maroon fill — width is set via JS */
+.bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  background: var(--maroon, #6B1F2A);
+  transition: width 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Percentage counter */
+.pct {
+  font-family: var(--font-display);
+  font-size: clamp(0.6rem, 0.85vw, 0.75rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(245, 240, 232, 0.2);
+  margin-top: 1.1rem;
+  opacity: 0;
+  animation: loaderFadeIn 0.5s ease 0.9s forwards;
+  /* Ensure numbers don't cause layout shift */
+  font-variant-numeric: tabular-nums;
+  min-width: 4ch;
+}
+
+/* ── Keyframes ─────────────────────────────────────── */
+
+@keyframes loaderSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes loaderReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes loaderFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes beanFloat1 {
+  0%, 100% { transform: rotate(-22deg) translateY(0px); }
+  50%       { transform: rotate(-17deg) translateY(-18px); }
+}
+
+@keyframes beanFloat2 {
+  0%, 100% { transform: rotate(38deg) translateY(0px); }
+  50%       { transform: rotate(33deg) translateY(-14px); }
 }
