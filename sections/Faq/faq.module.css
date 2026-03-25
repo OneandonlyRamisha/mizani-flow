@@ -1,0 +1,154 @@
+.section {
+  min-height: 100vh;
+  padding: 15vh 5vw;
+  display: flex;
+  gap: 5vw;
+  align-items: center;
+}
+
+.left {
+  flex: 1 1 55%;
+}
+
+.heading {
+  color: var(--cream);
+  margin-bottom: 5rem;
+}
+
+.item {
+  border-top: 1px solid rgba(245, 240, 232, 0.1);
+}
+
+.question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.8rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--cream);
+}
+
+.questionText {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding-right: 2rem;
+}
+
+.questionIcon {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--maroon-light);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.answerInner {
+  overflow: hidden;
+}
+
+.answerText {
+  color: rgba(245, 240, 232, 0.6);
+  padding-bottom: 1.8rem;
+  max-width: 50ch;
+  line-height: 1.7;
+}
+
+.right {
+  flex: 1 1 40%;
+  position: sticky;
+  top: 15vh;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.illustration {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+}
+
+.floatingBean {
+  position: absolute;
+  opacity: 0.25;
+}
+
+.craftedLabel {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.craftedTitle {
+  color: rgba(107, 31, 42, 0.6);
+  margin-bottom: 0.5rem;
+}
+
+.craftedDesc {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  color: rgba(245, 240, 232, 0.35);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .section {
+    min-height: auto;
+    padding: 6vh 5vw;
+  }
+
+  .heading {
+    margin-bottom: 4vh;
+  }
+
+  :global(.faq-section) {
+    flex-direction: column !important;
+  }
+
+  :global(.faq-left) {
+    flex: 1 1 100% !important;
+  }
+
+  :global(.faq-right) {
+    display: none !important;
+  }
+}
+
+.questionIconOpen {
+  transform: rotate(45deg);
+}
+
+.answerOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+@keyframes faqBeanFloat {
+  from { translate: 0 0; }
+  to { translate: 0 -12px; }
+}
+
+.illustration svg {
+  overflow: visible;
+}
+
+.item:last-child {
+  border-bottom: 1px solid rgba(245, 240, 232, 0.1);
+}

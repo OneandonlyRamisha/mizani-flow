@@ -133,88 +133,13 @@ body::after {
   z-index: 9999;
 }
 
-/* Custom Cursor */
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  border: 1.5px solid var(--cream);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  mix-blend-mode: difference;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease;
+.grainSvg {
+  position: absolute;
+  width: 0;
+  height: 0;
 }
 
-.custom-cursor.expanded {
-  width: 60px;
-  height: 60px;
-}
-
-@media (pointer: coarse) {
-  .custom-cursor {
-    display: none !important;
-  }
-}
-
-/* Marquee */
-.marquee-wrap {
-  overflow: hidden;
-  white-space: nowrap;
-  width: 100%;
-}
-
-.marquee-text {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: clamp(8vw, 12vw, 15vw);
-  font-weight: 900;
-  text-transform: uppercase;
-  -webkit-text-stroke: 3px var(--cream);
-  color: transparent;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-
-/* Loader */
-.loader-line-el {
-  width: 48px;
-  height: 1px;
-  background: #F5F0E8;
-  transform-origin: center;
-  animation: loaderLine 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes loaderLine {
-  0%   { transform: scaleX(0);   opacity: 0; }
-  8%   { transform: scaleX(0.6); opacity: 0.5; }
-  20%  { transform: scaleX(1);   opacity: 0.4; }
-  50%  { transform: scaleX(1.2); opacity: 0.35; }
-  75%  { transform: scaleX(1);   opacity: 0.4; }
-  90%  { transform: scaleX(2);   opacity: 0.15; }
-  100% { transform: scaleX(3);   opacity: 0; }
-}
-
-/* Keyframe Animations */
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(1); }
-  50% { opacity: 0.8; transform: scaleY(1.3); }
-}
-
-@keyframes marqueeSlide {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes faqBeanFloat {
-  from { translate: 0 0; }
-  to { translate: 0 -12px; }
-}
-
-/* Responsive */
+/* Responsive typography */
 @media (max-width: 768px) {
   .display-xl {
     font-size: clamp(3rem, 12vw, 5rem);
@@ -225,37 +150,6 @@ body::after {
   .display-md {
     font-size: clamp(1.8rem, 8vw, 3rem);
   }
-  .marquee-text {
-    -webkit-text-stroke: 2px var(--cream);
-  }
-  .custom-cursor { display: none !important; }
-  .ingredient-item { flex-direction: column !important; }
-  .ingredient-item > div:first-child { flex: 1 !important; }
-  .testimonial-card { flex: 0 0 85vw !important; padding: 8vw !important; }
-  .science-pillar { padding: 2rem !important; }
-  .brew-step { flex-direction: column !important; gap: 1.5rem !important; }
-  .brew-step > div:first-child {
-    border-right: none !important;
-    border-bottom: 2px solid var(--maroon) !important;
-    padding-right: 0 !important;
-    padding-bottom: 1rem !important;
-    text-align: left !important;
-  }
-  .marquee-divider { display: none !important; }
-  .science-header { max-width: 100% !important; }
-  .science-desc { max-width: 100% !important; }
-  .pillars-grid { grid-template-columns: 1fr !important; }
-  .stats-row {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 2rem 1rem !important;
-  }
-  .ingredients-strip {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem !important;
-  }
-  .faq-section { flex-direction: column !important; }
-  .faq-left { flex: 1 1 100% !important; }
-  .faq-right { display: none !important; }
 }
 
 @media (max-width: 480px) {
@@ -265,30 +159,4 @@ body::after {
   .display-lg {
     font-size: clamp(2rem, 12vw, 3rem);
   }
-  .marquee-text {
-    -webkit-text-stroke: 1px var(--cream);
-    font-size: clamp(6vw, 10vw, 12vw);
-  }
-  .testimonial-card {
-    flex: 0 0 90vw !important;
-    padding: 6vw !important;
-    min-height: 50vh !important;
-  }
-  .testimonial-card p {
-    font-size: clamp(1rem, 4.5vw, 1.25rem) !important;
-    max-width: 100% !important;
-  }
-  .science-pillar { padding: 1.25rem !important; }
-  .stats-row {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-    text-align: left !important;
-  }
-  .stats-row > div {
-    border-left: none !important;
-    border-bottom: 1px solid rgba(107,31,42,0.2) !important;
-    padding-bottom: 2rem !important;
-  }
-  .ingredients-strip { grid-template-columns: 1fr !important; }
-  .display-lg { font-size: clamp(1.8rem, 10vw, 2.5rem) !important; }
 }
